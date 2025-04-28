@@ -24,55 +24,42 @@ function randomComputerPick() {
 }
 
 function getWinner(playerPick, computerPick) {
-    let outCome = "Draw"
+    console.log("HERE")
+    if (playerPick === computerPick) return "Draw";
 
-    console.log(`Player Pick: ${playerPick}, Computer Pick: ${computerPick}`)
+    if ((playerPick === "Rock" && computerPick === "Scissors") ||
+        (playerPick === "Paper" && computerPick === "Rock") ||
+        (playerPick === "Scissors" && computerPick === "Paper")
+    ) return "Win";
 
-    if (playerPick == computerPick) {
-        outCome = "Draw";
-    } else if (playerPick == "Rock") {
-        if (computerPick == "Paper") {
-            outCome = "Loss";
-        } else if (computerPick == "Scissors") {
-            outCome = "Win";
-        }
-    } else if (playerPick == "Paper") {
-        if (computerPick == "Rock") {
-            outCome = "Win";
-        } else if (computerPick == "Scissors") {
-            outCome = "Loss";
-        }
-    } else if (playerPick == "Scissors") {
-        if (computerPick == "Rock") {
-            outCome = "Loss";
-        } else if (computerPick == "Paper") {
-            outCome = "Win";
-        }
-    }
-
-    if (outCome == "Draw") {
-        alert("It was a draw");
-    } else if (outCome == "Win") {
-        alert("Player Wins");
-        playerScore += 1;
-    } else if (outCome == "Loss") {
-        alert("Computer Wins");
-        computerScore += 1;
-    } else {
-        alert("Impossible outcome")
-    }
-
-    console.log(`Player Points: ${playerScore}`);
-    console.log(`Computer Points: ${computerScore}`);
+    return "Loss";
 }
 
-randomComputerPick()
-while (gaming) {
-    let playerPick = prompt("Rock, Paper, or Scissors?");
-    if (playerPick == "quit") {
-        break;
-    }
-    let computerPick = randomComputerPick()
+document.addEventListener("DOMContentLoaded", () => {
+    const actionEl = document.querySelector(".action");
+    const pScoreEl = document.querySelector(".playerScore span");
+    const cScoreEl = document.querySelector(".computerScore span");
+    const buttons = document.querySelectorAll(".playerButtons button");
 
-    getWinner(playerPick, computerPick);
-}
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const playerPick = btn.dataset.pick;
+            const computerPick = randomComputerPick();
+
+            const outCome = getWinner(playerPick, computerPick);
+
+            if (outCome == "Win") {
+                actionEl.textContent = "You won";
+                playerScore++;
+            } else if (outCome == "Loss") {
+                actionEl.textContent = "You Lost";
+                computerScore++;
+            } else if (outCome == "Draw") {
+                actionEl.textContent = "It was a draw";
+            }
+
+            pScoreEl.textContent = playerScore;
+            cScoreEl.textContent = computerScore;
+        })
+    })
+})

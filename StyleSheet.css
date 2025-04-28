@@ -1,0 +1,55 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1, h2{
+    width: 100%;
+}
+.container{
+
+}
+.gameView {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: 20% 15% 30% 35%;
+    justify-items: center;
+    align-items: center;
+    border: 4px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 40%;
+    width: 50%;
+    text-align: center;
+}
+.gameView h1 {
+    grid-column: 1 / span 3;
+}
+.computerScore{
+    grid-column: 3;
+    grid-row: 2;
+}
+.playerScore{
+    grid-column:1;
+    grid-row: 2;
+}
+
+.action {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+}
+
+.playerButtons {
+    grid-column: 1 / span 3;
+    grid-row: 4;
+}
+.playerButtons button {
+    padding: 10px;
+    font-weight: 700;
+}

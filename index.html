@@ -4,10 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" href="StyleSheet.css" />
 </head>
 <body>
-    <div id="status">
-        <h1>AAAAA</h1>
+    <div class="gameView">
+        <h1>Rock Paper Scissors</h1>
+        <h4 class="computerScore">Computer Score: <span>0</span></h4>
+        <h4 class="playerScore">Player Score: <span>0</span></h4>
+
+        <h2 class="action">Pick one below</h2>
+
+        <div class="playerButtons">
+            <button data-pick="Rock">Rock</button>
+            <button data-pick="Paper">Paper</button>
+            <button data-pick="Scissors">Scissors</button>
+        </div>
     </div>
     <script src="Script.js"></script>
 </body>
